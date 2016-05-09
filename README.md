@@ -144,11 +144,12 @@ export TWITTER_ACCESS_TOKEN=''
 export TWITTER_ACCESS_TOKEN_SECRET=''
 ```
 
-And remember to source:
+And remember to [source](http://ss64.com/bash/source.html):
 
 ```bash
 source ~/.zshrc
 ```
+> `source` is a bash shell built-in command that executes the content of the file passed as argument, in the current shell.
 
 ## Set up your Twitter app - Independent Practice (5 mins)
 
