@@ -93,7 +93,7 @@ var server  = require('http').createServer(app);
 
 This second way - creating an HTTP server yourself instead of having Express create one for you - is useful if you want to reuse the HTTP server, for example to run socket.io within the same HTTP server instance:
 
-We need change at the bottom from `app` to `server`:
+We need to make a change at the bottom from `app` to `server`:
 
 ```javascript
 server.listen(port);
