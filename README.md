@@ -248,13 +248,15 @@ This is great! We now have owr tweets streaming but only to the console. Let's g
 Go back to our `app.js` and tidy up the tweet data we're sending through:
 
 ```javascript
-stream.on('tweet', function (tweet) {
-var data = {};
-  data.name = tweet.user.name;
-  data.screen_name = tweet.user.screen_name;
-  data.text = tweet.text;
-  data.user_profile_image = tweet.user.profile_image_url;
-  socket.emit('tweets', data);
+io.on('connect', function(socket) {
+  stream.on('tweet', function (tweet) {
+	var data = {};
+	  data.name = tweet.user.name;
+	  data.screen_name = tweet.user.screen_name;
+	  data.text = tweet.text;
+	  data.user_profile_image = tweet.user.profile_image_url;
+	  socket.emit('tweets', data);
+	});
 });
 ```
 
