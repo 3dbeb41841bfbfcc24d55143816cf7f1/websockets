@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+    <title>Welcome to the Twitter Stream</title>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
+	</head>
+	<body>
+    <h1><%- header %></h1>
+    <form action="/" method="GET">
+		  Search:
+		  <input type="text" id="search_tweet">
+		  <input type="submit" value="Submit">
+		</form>
+    <div id="tweet-container"></div>
+
+    <script type="text/javascript">
+    	
+    	$('form').submit(function(event){
+    		search = ($('#search_tweet').val());
+    		event.preventDefault(); 
+    		createStream(search);  		
+    	});
+
+    function createStream(search){	
+    	console.log(search);
+		
+    	var queryObject = { query: "search=" + search }
+
+		  var socket = io("http://127.0.0.1:3000/", queryObject);
+
+		  socket.on('connect', function() {
+	      console.log('Connected!');
+	    });
+
+	    socket.on('tweets', function(tweet) {
+	      var html = '<div class="row"><div class="col-md-6 col-md-offset-3 tweet"><img src="' + tweet.user_profile_image + '" class="avatar pull-left"/><div class="names"><span class="full-name">' + tweet.name + ' </span><span class="username">@' +tweet.screen_name + '</span></div><div class="contents"><span class="text">' + tweet.text + '</span></div></div></div>';
+	      $('#tweet-container').prepend(html);
+	    });
+	  };
+
+		</script>
+	</body>
+</html>
