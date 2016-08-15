@@ -93,7 +93,7 @@ var server  = require('http').createServer(app);
 
 This second way - creating an HTTP server yourself instead of having Express create one for you - is useful if you want to reuse the HTTP server, for example to run socket.io within the same HTTP server instance:
 
-We need change at the bottom from `app` to `server`:
+We need to make a change at the bottom from `app` to `server`:
 
 ```javascript
 server.listen(port);
@@ -144,11 +144,12 @@ export TWITTER_ACCESS_TOKEN=''
 export TWITTER_ACCESS_TOKEN_SECRET=''
 ```
 
-And remember to source:
+And remember to [source](http://ss64.com/bash/source.html):
 
 ```bash
 source ~/.zshrc
 ```
+> `source` is a bash shell built-in command that executes the content of the file passed as argument, in the current shell.
 
 ## Set up your Twitter app - Independent Practice (5 mins)
 
@@ -247,13 +248,15 @@ This is great! We now have owr tweets streaming but only to the console. Let's g
 Go back to our `app.js` and tidy up the tweet data we're sending through:
 
 ```javascript
-stream.on('tweet', function (tweet) {
-var data = {};
-  data.name = tweet.user.name;
-  data.screen_name = tweet.user.screen_name;
-  data.text = tweet.text;
-  data.user_profile_image = tweet.user.profile_image_url;
-  socket.emit('tweets', data);
+io.on('connect', function(socket) {
+  stream.on('tweet', function (tweet) {
+	var data = {};
+	  data.name = tweet.user.name;
+	  data.screen_name = tweet.user.screen_name;
+	  data.text = tweet.text;
+	  data.user_profile_image = tweet.user.profile_image_url;
+	  socket.emit('tweets', data);
+  });
 });
 ```
 
