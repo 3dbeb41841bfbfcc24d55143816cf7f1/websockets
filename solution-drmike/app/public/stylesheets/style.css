@@ -3,11 +3,20 @@ body {
   color: #323332;
 }
 
-h1, h2 {
+h1, h2, h3 {
   text-align: center;
   color: #fff;
   text-shadow: 0 0 2px #323332;
   line-height: 1;
+  margin-bottom: 20px;
+}
+
+#slider {
+  margin: 10px;
+}
+
+#sliderValue {
+  color: white;
 }
 
 #tweet-container {
@@ -19,6 +28,7 @@ h1, h2 {
 }
 
 .tweet {
+  margin: 5px 20px;
   padding: 5px;
   border: 1px solid rgba(50,51,50,0.5);
   margin-bottom: 10px;

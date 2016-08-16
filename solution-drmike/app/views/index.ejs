@@ -7,42 +7,47 @@
     <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to the Twitter Stream</h1>
-    <h2>Displaying Tweets for <span id="search-term"></span></h2>
-
-    <div style="width: 100%" class="text-center">
-      <form class="form-inline" name="search">
-        <div class="form-group">
-          <label for="searchTerm">Term</label>
-          <input type="text" class="form-control" id="searchTerm">
-        </div>
-        <button type="submit" class="btn btn-primary">Search</button>
-      </form>
-
-      <button id="toggle-button"
-              class="btn btn-warning text-center"
-              onclick="toggleStream()"></button>
-      <label>Number of Tweets to Show</label>
-      <input id="myslider"
-             type="text"
-             data-slider-id='myslider'
-             data-slider-min="1"
-             data-slider-max="20"
-             data-slider-step="1"
-             data-slider-value="10"/>
-      <button id="clear-button"
-              class="btn btn-danger text-center"
-              onclick="clearTweets()">Clear</button>
-      <hr/>
-      <div id="tweet-container"></div>
+    <div class="container-fluid">
+      <h1>Welcome to the Twitter Stream</h1>
+      <section class="row">
+        <aside class="col-sm-4 text-center">
+          <form class="form-inline" name="search">
+            <div class="form-group">
+              <label for="searchTerm">Term</label>
+              <input type="text" class="form-control" id="searchTerm">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+          <button id="toggle-button"
+                  class="btn btn-warning text-center"
+                  onclick="toggleStream()"></button>
+          <br/>
+          <br/>
+          <label>Number of Tweets to Show</label>
+          <input id="slider"
+                 type="text"
+                 data-slider-id='slider'
+                 data-slider-min="1"
+                 data-slider-max="20"
+                 data-slider-step="1"
+                 data-slider-value="10"/>
+          <span id="sliderValue"></span>
+        </aside>
+        <main class="col-sm-8 text-center">
+          <h3>Displaying Tweets for "<span id="search-term"></span>"
+          <button id="clear-button"
+                    class="btn btn-danger btn-sm"
+                    onclick="clearTweets()">Clear</button></h3>
+          <div id="tweet-container"></div>
+        </main>
+      </section>
     </div>
-
   </body>
 
   <script type="text/javascript" src="/javascripts/jquery.min.js" defer></script>
   <script type="text/javascript" src="/javascripts/bootstrap.min.js" defer></script>
   <script type="text/javascript" src="/javascripts/bootstrap-slider.min.js" defer></script>
   <script type="text/javascript" src="/javascripts/socket.io.js" defer></script>
-  <script type="text/javascript" src="/javascripts/twitter.js" defer></script>
+  <script type="text/javascript" src="/javascripts/app.js" defer></script>
 
 </html>

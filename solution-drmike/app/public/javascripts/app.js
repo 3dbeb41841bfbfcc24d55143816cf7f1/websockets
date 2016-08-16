@@ -23,13 +23,18 @@ $(function () {
   $('#toggle-button').hide();
   $tweetContainer = $('#tweet-container');
 
-  // let $mySlider = $("#slider").slider();
-
-  let $mySlider = $('#myslider').slider({
+  let $slider = $('#slider').slider({
     formatter: function(value) {
-      return 'Current value: ' + value;
+      // return 'Current value: ' + value;
+      return value;
     }
   });
+
+  $('#slider').on("slide", function(e) {
+    $("#sliderValue").text(e.value);
+  });
+
+  $("#sliderValue").text($slider.slider('getValue'));
 
   socket.on('connect', function() {
     console.log('Connected!');
@@ -38,7 +43,7 @@ $(function () {
   socket.on('tweets', function(tweet) {
     let $tweetHtml = $(`
     <div class="row">
-      <div class="col-md-6 col-md-offset-3 tweet">
+      <div class="tweet">
         <img src="${tweet.user_profile_image}" class="avatar pull-left"/>
         <div class="names">
           <span class="full-name">${tweet.name}</span>
@@ -56,9 +61,14 @@ $(function () {
     }, 50);
 
     // limit to the last N tweets
-    let sliderValue = $mySlider.slider('getValue');
+    let sliderValue = $slider.slider('getValue');
     if ($tweetContainer.children().length > sliderValue) {
-      $tweetContainer.children(':gt(' + (sliderValue-1) + ')').remove();
+      let childrenToRemove = $tweetContainer.children(':gt(' + (sliderValue-1) + ')');
+      // console.log('removing %s children', childrenToRemove.length);
+      childrenToRemove.children('.tweet').removeClass('fadeIn').addClass('fadeOut');
+      setTimeout(function() {
+        childrenToRemove.remove();
+      }, 250);
     }
   });
 
