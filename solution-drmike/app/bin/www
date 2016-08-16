@@ -22,7 +22,6 @@ app.set('port', port);
 var server = http.createServer(app);
 
 // configure SocketIO
-var server = http.Server(app);
 require('../config/socketio.js')(server);
 
 /**
