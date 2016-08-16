@@ -303,11 +303,7 @@ Edit the file `bin/www` and add the code marked below:
 
 var server = http.createServer(app);
 
-// START OF NEW CODE TO ADD
-// configure SocketIO
-var server = http.Server(app);
-require('../config/socketio.js')(server);
-// END OF NEW CODE TO ADD
+require('../config/socketio.js')(server);   // <== ADD THIS LINE
 ```
 
 ### Step 7 - Get Twitter API Keys for your App
