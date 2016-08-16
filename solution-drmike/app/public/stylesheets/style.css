@@ -11,9 +11,11 @@ h1, h2 {
 }
 
 #tweet-container {
+  /*
   max-height: 300px;
   overflow: auto;
   overflow-x: hidden;
+  */
 }
 
 .tweet {
@@ -34,6 +36,10 @@ h1, h2 {
 
 .tweet.fadeOut {
   opacity: 0;
+}
+
+#slider .slider-selection {
+  background: #BABABA;
 }
 
 .names, .contents {

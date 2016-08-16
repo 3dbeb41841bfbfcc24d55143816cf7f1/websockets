@@ -23,6 +23,14 @@ $(function () {
   $('#toggle-button').hide();
   $tweetContainer = $('#tweet-container');
 
+  // let $mySlider = $("#slider").slider();
+
+  let $mySlider = $('#myslider').slider({
+    formatter: function(value) {
+      return 'Current value: ' + value;
+    }
+  });
+
   socket.on('connect', function() {
     console.log('Connected!');
   });
@@ -48,8 +56,9 @@ $(function () {
     }, 50);
 
     // limit to the last N tweets
-    if ($tweetContainer.children().length > 10) {
-      $tweetContainer.children(':gt(9)').remove();
+    let sliderValue = $mySlider.slider('getValue');
+    if ($tweetContainer.children().length > sliderValue) {
+      $tweetContainer.children(':gt(' + (sliderValue-1) + ')').remove();
     }
   });
 

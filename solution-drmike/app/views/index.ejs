@@ -3,24 +3,37 @@
   <head>
     <title>Welcome to the Twitter Stream</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-slider.css">
+    <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>Welcome to the Twitter Stream</h1>
     <h2>Displaying Tweets for <span id="search-term"></span></h2>
 
     <div style="width: 100%" class="text-center">
-      <form action="/" name="search">
+      <form class="form-inline" name="search">
         <div class="form-group">
-          <input type="text" class="form-control">
+          <label for="searchTerm">Term</label>
+          <input type="text" class="form-control" id="searchTerm">
         </div>
-        <input type="submit" class="btn btn-default">
+        <button type="submit" class="btn btn-primary">Search</button>
       </form>
 
-      <button id="toggle-button" class="btn btn-warning text-center" onclick="toggleStream()"></button>
-      <button id="toggle-button" class="btn btn-danger text-center" onclick="clearTweets()">Clear</button>
+      <button id="toggle-button"
+              class="btn btn-warning text-center"
+              onclick="toggleStream()"></button>
+      <label>Number of Tweets to Show</label>
+      <input id="myslider"
+             type="text"
+             data-slider-id='myslider'
+             data-slider-min="1"
+             data-slider-max="20"
+             data-slider-step="1"
+             data-slider-value="10"/>
+      <button id="clear-button"
+              class="btn btn-danger text-center"
+              onclick="clearTweets()">Clear</button>
       <hr/>
-
       <div id="tweet-container"></div>
     </div>
 
@@ -28,6 +41,7 @@
 
   <script type="text/javascript" src="/javascripts/jquery.min.js" defer></script>
   <script type="text/javascript" src="/javascripts/bootstrap.min.js" defer></script>
+  <script type="text/javascript" src="/javascripts/bootstrap-slider.min.js" defer></script>
   <script type="text/javascript" src="/javascripts/socket.io.js" defer></script>
   <script type="text/javascript" src="/javascripts/twitter.js" defer></script>
 
